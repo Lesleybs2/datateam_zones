@@ -10,27 +10,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-    - name: Debug: List contents before deletion
-      run: |
-        echo "Before deletion:"
-        ls -R datateam_zones
+      - name: Remove the zones directory
+        run: |
+          if [ -d "datateam_zones/zones" ]; then
+            rm -rf datateam_zones/zones/
+            echo "zones directory removed successfully."
+          else
+            echo "zones directory does not exist."
+          fi
 
-    - name: Remove the zones directory
-      run: |
-        rm -rf datateam_zones/zones/
-
-    - name: Debug: List contents after deletion
-      run: |
-        echo "After deletion:"
-        ls -R datateam_zones
-
-    - name: Commit and push changes
-      run: |
-        git config --global user.name "github-actions[bot]"
-        git config --global user.email "github-actions[bot]@users.noreply.github.com"
-        git add -A
-        git commit -m "Removed zones directory"
-        git push
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Removed zones directory"
+          git push
