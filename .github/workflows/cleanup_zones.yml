@@ -15,7 +15,7 @@ jobs:
 
       - name: Remove the zones directory
         run: |
-          if [ -d "datateam_zones/zones" ]; then
+          if [ -d "datateam_zones/zones/" ]; then
             rm -rf datateam_zones/zones/
             echo "zones directory removed successfully."
           else
