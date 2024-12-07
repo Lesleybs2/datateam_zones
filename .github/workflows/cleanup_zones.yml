@@ -12,4 +12,4 @@ jobs:
     steps:
       - name: Remove the zones directory
         run: |
-          rm -rf datateam_zones/zones/
+          rm -rf datateam_zones/zones
